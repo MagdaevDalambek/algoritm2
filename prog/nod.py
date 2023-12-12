@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 import timeit
 import numpy as np
 import matplotlib.pyplot as plt
@@ -26,29 +29,30 @@ def create_graph(b, c, d):
     plt.plot(b, d)
     plt.xticks(x_ticks)
     plt.yticks(y_ticks)
-    plt.title("График")
-    plt.xlabel("X")
-    plt.ylabel("Y")
+    plt.title("НОД")
+    plt.xlabel("Второе число функции")
+    plt.ylabel("Время работы алгоритма")
     plt.show()
 
-start = 300
-end = 600
-a = 420
-b = []; c = []; d = []
+if __name__ == '__main__':
+    start = 300
+    end = 600
+    a = 420
+    b = []; c = []; d = []
 
-print("GCD:")
-for i in range(start, end):
-    b.append(i)
-    time = sum(timeit.timeit(lambda: GCD(a, i), number=1) for j in range(500))
-    s = time/500
-    c.append(s)
-    print("при i =", i, "число =", GCD(a, i), "время =", s)
+    print("GCD:")
+    for i in range(start, end):
+        b.append(i)
+        time = sum(timeit.timeit(lambda: GCD(a, i), number=1) for j in range(500))
+        s = time/500
+        c.append(s)
+        print("при i =", i, "число =", GCD(a, i), "время =", s)
 
-print("GCDfast:")
-for i in range(start, end):
-    time = sum(timeit.timeit(lambda: GCDfast(a, i), number=1) for j in range(500))
-    l = time/500
-    d.append(l)
-    print("при i =", i, "число =", GCDfast(a, i), "время =", l)
+    print("GCDfast:")
+    for i in range(start, end):
+        time = sum(timeit.timeit(lambda: GCDfast(a, i), number=1) for j in range(500))
+        l = time/500
+        d.append(l)
+        print("при i =", i, "число =", GCDfast(a, i), "время =", l)
 
-create_graph(b, c, d)
+    create_graph(b, c, d)
